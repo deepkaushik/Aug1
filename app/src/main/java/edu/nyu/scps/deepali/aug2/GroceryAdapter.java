@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TwoLineListItem;
 
 import com.parse.ParseObject;
 
@@ -44,22 +44,22 @@ public class GroceryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout linearLayout;
+        TwoLineListItem twoLineListItem;
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            linearLayout = (LinearLayout)inflater.inflate(android.R.layout.simple_list_item_2, null);
+            twoLineListItem = (TwoLineListItem)inflater.inflate(android.R.layout.simple_list_item_2, null);
         } else {
-            linearLayout = (LinearLayout)convertView;
+            twoLineListItem = (TwoLineListItem)convertView;
         }
 
         ParseObject parseObject = parseObjects.get(position);
-        TextView textView = (TextView)linearLayout.findViewById(android.R.id.text1);
+        TextView textView = (TextView)twoLineListItem.findViewById(android.R.id.text1);
         textView.setText(parseObject.getString("name"));
-        textView = (TextView)linearLayout.findViewById(android.R.id.text2);
+        textView = (TextView)twoLineListItem.findViewById(android.R.id.text2);
         textView.setText(parseObject.getObjectId() + "\n"
                 + parseObject.getCreatedAt() + "\n"
                 + parseObject.getUpdatedAt());
-        return linearLayout;
+        return twoLineListItem;
     }
 }
